@@ -21,6 +21,7 @@
 		0D253DFE2A78C33900CDD5FB /* TodoListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D253DFD2A78C33900CDD5FB /* TodoListStore.swift */; };
 		0D253E002A78C3B000CDD5FB /* CoreDataTodoListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D253DFF2A78C3B000CDD5FB /* CoreDataTodoListStore.swift */; };
 		0D253E022A78C40400CDD5FB /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D253E012A78C40400CDD5FB /* CoreDataHelpers.swift */; };
+		0D253E042A78C76200CDD5FB /* LocalTodoListLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D253E032A78C76200CDD5FB /* LocalTodoListLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		0D253DFD2A78C33900CDD5FB /* TodoListStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListStore.swift; sourceTree = "<group>"; };
 		0D253DFF2A78C3B000CDD5FB /* CoreDataTodoListStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTodoListStore.swift; sourceTree = "<group>"; };
 		0D253E012A78C40400CDD5FB /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
+		0D253E032A78C76200CDD5FB /* LocalTodoListLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalTodoListLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 				0D253DF82A78C08200CDD5FB /* Core Data */,
 				0D253DFB2A78C2C500CDD5FB /* LocalTodoItem.swift */,
 				0D253DFD2A78C33900CDD5FB /* TodoListStore.swift */,
+				0D253E032A78C76200CDD5FB /* LocalTodoListLoader.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				0D253DFC2A78C2C500CDD5FB /* LocalTodoItem.swift in Sources */,
 				0D253DFE2A78C33900CDD5FB /* TodoListStore.swift in Sources */,
 				0D253DC42A78BD8100CDD5FB /* SceneDelegate.swift in Sources */,
+				0D253E042A78C76200CDD5FB /* LocalTodoListLoader.swift in Sources */,
 				0D253E022A78C40400CDD5FB /* CoreDataHelpers.swift in Sources */,
 				0D253DF32A78BE7F00CDD5FB /* MainContentView.swift in Sources */,
 				0D253DF72A78BF5C00CDD5FB /* ToDoList.xcdatamodeld in Sources */,
