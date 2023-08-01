@@ -57,7 +57,9 @@ struct TodoItemCell: View {
                         .foregroundColor(model.getDateColor())
                 }
             }
+            Spacer()
         }
+        .background(.white)
     }
 }
 

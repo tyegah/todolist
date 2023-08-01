@@ -162,12 +162,11 @@
 		0D253DF12A78BE5700CDD5FB /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				0D253E212A790B0100CDD5FB /* Add New Item View */,
+				0D253E202A790AF500CDD5FB /* Main Content View */,
 				0D253E192A79077300CDD5FB /* Model */,
 				0D253E152A78F9FC00CDD5FB /* View Model */,
 				0D253E142A78F9E100CDD5FB /* Custom View */,
-				0D253E132A78F9A400CDD5FB /* List Cell */,
-				0D253DF22A78BE7F00CDD5FB /* MainContentView.swift */,
-				0D253E072A78D1E700CDD5FB /* AddNewItemView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -250,6 +249,23 @@
 				0D253E1B2A79087000CDD5FB /* ImageToastView.swift */,
 			);
 			path = Toast;
+			sourceTree = "<group>";
+		};
+		0D253E202A790AF500CDD5FB /* Main Content View */ = {
+			isa = PBXGroup;
+			children = (
+				0D253E132A78F9A400CDD5FB /* List Cell */,
+				0D253DF22A78BE7F00CDD5FB /* MainContentView.swift */,
+			);
+			path = "Main Content View";
+			sourceTree = "<group>";
+		};
+		0D253E212A790B0100CDD5FB /* Add New Item View */ = {
+			isa = PBXGroup;
+			children = (
+				0D253E072A78D1E700CDD5FB /* AddNewItemView.swift */,
+			);
+			path = "Add New Item View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
