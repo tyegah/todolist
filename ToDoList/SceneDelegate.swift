@@ -32,6 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(windowScene: scene)
         let viewModel = TodoListViewModel(loader: LocalTodoListLoader(store: todoListStore))
         navigationController.viewControllers = [UIHostingController(rootView: MainContentView(viewModel: viewModel))]
+        navigationController.isNavigationBarHidden = true
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
     }

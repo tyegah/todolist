@@ -53,6 +53,9 @@ struct MainContentView: View {
             .onAppear {
                 viewModel.loadList()
             }
+            .onChange(of: searchText) { newValue in
+                viewModel.search(searchText)
+            }
         }
         .searchable(text: self.$searchText)
     }

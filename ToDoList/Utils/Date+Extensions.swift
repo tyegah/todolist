@@ -13,8 +13,6 @@ extension Date {
         dateFormatter.dateFormat = "dd/MM/yyyy"
         
         let calendar = Calendar.current
-        let today = calendar.startOfDay(for: Date())
-        let yesterday = calendar.date(byAdding: .day, value: -1, to: today)!
         
         if calendar.isDateInToday(self) {
             return "Today"

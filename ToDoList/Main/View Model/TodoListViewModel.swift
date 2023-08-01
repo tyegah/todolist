@@ -15,6 +15,7 @@ class TodoListViewModel: ObservableObject {
     }
     
     @Published var todoList: [TodoItemModel] = []
+    private var localList: [LocalTodoItem] = []
     private var selectedModel: TodoItemModel?
 
     func loadList() {
@@ -23,6 +24,7 @@ class TodoListViewModel: ObservableObject {
                 let predicate = NSPredicate(format: "removed == NO")
                 let result = try await loader.load(predicate: predicate)
                 await MainActor.run {
+                    self.localList = result
                     self.todoList = result.map { TodoItemModel.initFrom($0) }
                 }
             }
@@ -102,6 +104,18 @@ class TodoListViewModel: ObservableObject {
                 debugPrint("ERROR \(error)")
             }
         }
+    }
+    
+    func search(_ keyword: String) {
+        if keyword.isEmpty {
+            todoList = localList.map { TodoItemModel.initFrom($0) }
+            return
+        }
+        
+        let searchResult = localList.filter { item in
+            item.title.lowercased().contains(keyword.lowercased()) || item.desc?.lowercased().contains(keyword.lowercased()) == true
+        }
+        todoList = searchResult.map { TodoItemModel.initFrom($0) }
     }
     
     private func add(_ item: LocalTodoItem) {
