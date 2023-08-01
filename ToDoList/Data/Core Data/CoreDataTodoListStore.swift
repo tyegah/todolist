@@ -55,6 +55,18 @@ final class CoreDataTodoListStore: TodoListStore {
     }
     
     func retrieve(_ predicate: NSPredicate?, completion: @escaping RetrievalCompletion) {
+        let context = self.context
         
+        context.perform {
+            completion( Result {
+                let todoItems = try TodoItem.find(in: context, where: predicate)
+                if todoItems.count > 0 {
+                    return todoItems.compactMap { $0.local }
+                }
+                else {
+                    return []
+                }
+            })
+        }
     }
 }
