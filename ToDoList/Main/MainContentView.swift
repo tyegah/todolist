@@ -28,7 +28,7 @@ struct MainContentView: View {
                         }
                     }
                     .onDelete { item in
-                        
+                        viewModel.delete(viewModel.todoList[item.first ?? 0])
                     }
                 }
             }

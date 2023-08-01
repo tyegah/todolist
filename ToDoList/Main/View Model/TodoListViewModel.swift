@@ -20,8 +20,8 @@ class TodoListViewModel: ObservableObject {
     func loadList() {
         Task {
             do {
-                let result = try await loader.load(predicate: nil)
-                debugPrint("RESULT \(result)")
+                let predicate = NSPredicate(format: "removed == NO")
+                let result = try await loader.load(predicate: predicate)
                 await MainActor.run {
                     self.todoList = result.map { TodoItemModel.initFrom($0) }
                 }
@@ -88,7 +88,20 @@ class TodoListViewModel: ObservableObject {
     }
     
     func delete(_ model: TodoItemModel) {
-        
+        Task {
+            do {
+                try await loader.delete(LocalTodoItem(id: model.id,
+                                                      title: model.title,
+                                                      desc: model.desc,
+                                                      completed: model.completed,
+                                                      removed: model.removed,
+                                                      dueDate: model.dueDate))
+                loadList()
+            }
+            catch {
+                debugPrint("ERROR \(error)")
+            }
+        }
     }
     
     private func add(_ item: LocalTodoItem) {
