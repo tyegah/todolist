@@ -11,7 +11,6 @@
 		0D253DC42A78BD8100CDD5FB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D253DC32A78BD8100CDD5FB /* SceneDelegate.swift */; };
 		0D253DCB2A78BD8400CDD5FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D253DCA2A78BD8400CDD5FB /* Assets.xcassets */; };
 		0D253DCE2A78BD8400CDD5FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D253DCC2A78BD8400CDD5FB /* LaunchScreen.storyboard */; };
-		0D253DD92A78BD8400CDD5FB /* ToDoListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D253DD82A78BD8400CDD5FB /* ToDoListTests.swift */; };
 		0D253DE32A78BD8400CDD5FB /* ToDoListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D253DE22A78BD8400CDD5FB /* ToDoListUITests.swift */; };
 		0D253DE52A78BD8400CDD5FB /* ToDoListUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D253DE42A78BD8400CDD5FB /* ToDoListUITestsLaunchTests.swift */; };
 		0D253DF32A78BE7F00CDD5FB /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D253DF22A78BE7F00CDD5FB /* MainContentView.swift */; };
@@ -59,7 +58,6 @@
 		0D253DCD2A78BD8400CDD5FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0D253DCF2A78BD8400CDD5FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0D253DD42A78BD8400CDD5FB /* ToDoListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0D253DD82A78BD8400CDD5FB /* ToDoListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListTests.swift; sourceTree = "<group>"; };
 		0D253DDE2A78BD8400CDD5FB /* ToDoListUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoListUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D253DE22A78BD8400CDD5FB /* ToDoListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListUITests.swift; sourceTree = "<group>"; };
 		0D253DE42A78BD8400CDD5FB /* ToDoListUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -81,6 +79,7 @@
 		0D253E1B2A79087000CDD5FB /* ImageToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageToastView.swift; sourceTree = "<group>"; };
 		0D253E1E2A7908A100CDD5FB /* ImageToastData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageToastData.swift; sourceTree = "<group>"; };
 		0D253E222A790CE800CDD5FB /* CoreDataTodoListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTodoListTests.swift; sourceTree = "<group>"; };
+		0D253E242A79120D00CDD5FB /* ToDoListUnitTests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = ToDoListUnitTests.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +110,7 @@
 		0D253DB52A78BD8100CDD5FB = {
 			isa = PBXGroup;
 			children = (
+				0D253E242A79120D00CDD5FB /* ToDoListUnitTests.xctestplan */,
 				0D253DC02A78BD8100CDD5FB /* ToDoList */,
 				0D253DD72A78BD8400CDD5FB /* ToDoListTests */,
 				0D253DE12A78BD8400CDD5FB /* ToDoListUITests */,
@@ -147,7 +147,6 @@
 		0D253DD72A78BD8400CDD5FB /* ToDoListTests */ = {
 			isa = PBXGroup;
 			children = (
-				0D253DD82A78BD8400CDD5FB /* ToDoListTests.swift */,
 				0D253E222A790CE800CDD5FB /* CoreDataTodoListTests.swift */,
 			);
 			path = ToDoListTests;
@@ -428,7 +427,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D253E232A790CE800CDD5FB /* CoreDataTodoListTests.swift in Sources */,
-				0D253DD92A78BD8400CDD5FB /* ToDoListTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
