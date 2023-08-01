@@ -21,7 +21,7 @@ protocol TodoListStore {
     typealias RetrievalCompletion = (RetrievalResult) -> Void
     
     func update(_ item: LocalTodoItem, completion: @escaping UpdateCompletion)
-    func delete(_ predicate: NSPredicate?, completion: @escaping DeletionCompletion)
+    func delete(_ item: LocalTodoItem, completion: @escaping DeletionCompletion)
     func insert(_ item:LocalTodoItem, completion: @escaping InsertionCompletion)
     func retrieve(_ predicate: NSPredicate?, completion: @escaping RetrievalCompletion)
 }

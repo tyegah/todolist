@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct LocalTodoItem {
+struct LocalTodoItem: Equatable {
     let id: UUID
     let title: String
     let desc: String?

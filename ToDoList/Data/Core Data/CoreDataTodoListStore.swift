@@ -49,20 +49,20 @@ final class CoreDataTodoListStore: TodoListStore {
         }
     }
     
-    func delete(_ predicate: NSPredicate?, completion: @escaping DeletionCompletion) {
+    func delete(_ item: LocalTodoItem, completion: @escaping DeletionCompletion) {
         let context = self.context
 
         context.perform {
             completion( Result {
-                let result = try TodoItem.find(in: context,
-                                                      where: predicate)
-                for item in result {
-                    item.removed = true
+                let predicate = NSPredicate(format: "id = %@", "\(item.id)")
+                let todoItem = try TodoItem.find(in: context, where: predicate).first
+                if let todoItem = todoItem {
+                    todoItem.removed = true
+                    try context.save()
                 }
-                
-                try context.save()
             })
         }
+    
     }
     
     func insert(_ item: LocalTodoItem, completion: @escaping InsertionCompletion) {

@@ -54,8 +54,7 @@ extension LocalTodoListLoader: TodoItemLoader {
 extension LocalTodoListLoader: TodoItemRemover {
     func delete(_ item: LocalTodoItem) async throws {
         try await withCheckedThrowingContinuation({ continuation in
-            let predicate = NSPredicate(format: "id = %@", "\(item.id)")
-            store.delete(predicate) { result in
+            store.delete(item) { result in
                 continuation.resume(with: result)
             }
         })

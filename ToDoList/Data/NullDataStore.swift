@@ -14,7 +14,7 @@ extension NullDataStore: TodoListStore {
         completion(.success(()))
     }
     
-    func delete(_ predicate: NSPredicate?, completion: @escaping DeletionCompletion) {
+    func delete(_ item: LocalTodoItem, completion: @escaping DeletionCompletion) {
         completion(.success(()))
     }
     
