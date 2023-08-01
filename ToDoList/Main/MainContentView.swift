@@ -16,12 +16,13 @@ struct MainContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                List(viewModel.todoList, id: \.id) { item in
-                    Text(item.title)
-                        .onTapGesture {
-                            viewModel.didSelectItem(item)
-                            presentNewItemSheet = true
-                        }
+                List {
+                    ForEach(viewModel.todoList, id:\.id){ item in
+                        TodoItemCell(model: item)
+                    }
+                    .onDelete { item in
+                        
+                    }
                 }
             }
             .navigationTitle("ToDo List")

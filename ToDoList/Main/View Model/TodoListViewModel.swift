@@ -82,6 +82,10 @@ class TodoListViewModel: ObservableObject {
         
     }
     
+    func delete(_ model: TodoItemModel) {
+        
+    }
+    
     private func add(_ item: LocalTodoItem) {
         Task {
             do {
