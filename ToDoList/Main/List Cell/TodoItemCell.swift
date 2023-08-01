@@ -7,6 +7,25 @@
 
 import SwiftUI
 
+private extension TodoItemModel {
+    func getDateFormatted() -> String {
+        guard let date = dueDate else { return "" }
+        return date.formatDate()
+    }
+    
+    func getDateColor() -> Color {
+        guard let date = dueDate else { return .gray }
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        if date < today {
+            return .red
+        }
+        else {
+            return .gray
+        }
+    }
+}
+
 struct TodoItemCell: View {
     var model: TodoItemModel
     var update: (TodoItemModel) -> Void
@@ -32,6 +51,11 @@ struct TodoItemCell: View {
                 Text(model.desc ?? "")
                     .font(.footnote)
                     .foregroundColor(.gray)
+                if model.dueDate != nil {
+                    Text(model.getDateFormatted())
+                        .font(.subheadline)
+                        .foregroundColor(model.getDateColor())
+                }
             }
         }
     }

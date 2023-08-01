@@ -41,5 +41,4 @@ class TodoItemModel {
     func toggleCompleted() {
         completed.toggle()
     }
-    
 }
