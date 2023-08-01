@@ -8,7 +8,7 @@
 import SwiftUI
 
 class TodoListViewModel: ObservableObject {
-    typealias Loader = TodoItemLoader & TodoItemSaver
+    typealias Loader = TodoItemLoader & TodoItemSaver & TodoItemUpdater & TodoItemRemover
     private let loader: Loader
     init(loader: Loader) {
         self.loader = loader
@@ -41,20 +41,67 @@ class TodoListViewModel: ObservableObject {
         return model
     }
     
-    func save() {
+    func update() {
         guard let model = selectedModel else { return }
         Task {
             do {
-                try await loader.save(LocalTodoItem(id: model.id,
-                                                    title: model.title,
-                                                    desc: model.desc,
-                                                    completed: model.completed,
-                                                    removed: model.removed,
-                                                    dueDate: model.dueDate))
+                try await loader.update(LocalTodoItem(id: model.id,
+                                                      title: model.title,
+                                                      desc: model.desc,
+                                                      completed: model.completed,
+                                                      removed: model.removed,
+                                                      dueDate: model.dueDate))
                 loadList()
             }
             catch {
-                debugPrint("NO ERROR \(error)")
+                debugPrint("ERROR \(error)")
+            }
+        }
+    }
+    
+    func didSelectItem(_ item: TodoItemModel) {
+        self.selectedModel = item
+    }
+    
+    func save() {
+        guard let model = selectedModel else { return }
+        let localItem = LocalTodoItem(id: model.id,
+                                      title: model.title,
+                                      desc: model.desc,
+                                      completed: model.completed,
+                                      removed: model.removed,
+                                      dueDate: model.dueDate)
+        if todoList.contains(where: { item in
+            item.id == model.id
+        }) {
+            update(localItem)
+        }
+        else {
+            add(localItem)
+        }
+        
+    }
+    
+    private func add(_ item: LocalTodoItem) {
+        Task {
+            do {
+                try await loader.save(item)
+                loadList()
+            }
+            catch {
+                debugPrint("ERROR \(error)")
+            }
+        }
+    }
+    
+    private func update(_ item: LocalTodoItem) {
+        Task {
+            do {
+                try await loader.update(item)
+                loadList()
+            }
+            catch {
+                debugPrint("ERROR \(error)")
             }
         }
     }

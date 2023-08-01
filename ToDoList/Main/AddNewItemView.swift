@@ -49,6 +49,11 @@ struct AddNewItemView: View {
                     DatePicker("Due date", selection: $dueDate, displayedComponents: .date)
                 }
             }
+            .onAppear {
+                title = model.title
+                description = model.desc ?? ""
+                dueDate = model.dueDate ?? .now
+            }
         }
     }
 }

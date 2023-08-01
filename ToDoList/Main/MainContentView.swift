@@ -18,6 +18,10 @@ struct MainContentView: View {
             VStack {
                 List(viewModel.todoList, id: \.id) { item in
                     Text(item.title)
+                        .onTapGesture {
+                            viewModel.didSelectItem(item)
+                            presentNewItemSheet = true
+                        }
                 }
             }
             .navigationTitle("ToDo List")
