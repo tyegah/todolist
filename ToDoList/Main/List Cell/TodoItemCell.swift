@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TodoItemCell: View {
     var model: TodoItemModel
+    var update: (TodoItemModel) -> Void
     var body: some View {
         HStack(alignment: .top, spacing: 16) {
             Circle()
@@ -19,10 +20,15 @@ struct TodoItemCell: View {
                                             .frame(width: 16, height: 16)
                                     )
                 .frame(width: 20.0, height: 20.0)
+                .onTapGesture {
+                    model.toggleCompleted()
+                    update(model)
+                }
             
             VStack(alignment: .leading, spacing: 8.0) {
                 Text(model.title)
                     .font(.headline)
+                    .foregroundColor(model.completed ? .secondary : .primary)
                 Text(model.desc ?? "")
                     .font(.footnote)
                     .foregroundColor(.gray)
@@ -33,6 +39,6 @@ struct TodoItemCell: View {
 
 struct TodoItemCell_Previews: PreviewProvider {
     static var previews: some View {
-        TodoItemCell(model: TodoItemModel(id: UUID(), title: "title", desc: "Description here", completed: true))
+        TodoItemCell(model: TodoItemModel(id: UUID(), title: "title", desc: "Description here", completed: false), update: {_ in })
     }
 }

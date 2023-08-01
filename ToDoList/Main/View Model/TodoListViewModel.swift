@@ -59,6 +59,11 @@ class TodoListViewModel: ObservableObject {
         }
     }
     
+    func createNewModel() {
+        let newModel = TodoItemModel(id: UUID(), title: "", completed: false)
+        selectedModel = newModel
+    }
+    
     func didSelectItem(_ item: TodoItemModel) {
         self.selectedModel = item
     }

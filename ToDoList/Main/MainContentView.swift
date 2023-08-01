@@ -18,7 +18,14 @@ struct MainContentView: View {
             VStack {
                 List {
                     ForEach(viewModel.todoList, id:\.id){ item in
-                        TodoItemCell(model: item)
+                        TodoItemCell(model: item) { model in
+                            viewModel.didSelectItem(model)
+                            viewModel.save()
+                        }
+                        .onTapGesture {
+                            viewModel.didSelectItem(item)
+                            presentNewItemSheet = true
+                        }
                     }
                     .onDelete { item in
                         
@@ -28,6 +35,7 @@ struct MainContentView: View {
             .navigationTitle("ToDo List")
             .toolbar {
                 Button {
+                    viewModel.createNewModel()
                     presentNewItemSheet = true
                 } label: {
                     Image(systemName: "plus")

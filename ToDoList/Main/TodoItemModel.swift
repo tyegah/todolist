@@ -37,4 +37,9 @@ class TodoItemModel {
                              removed: local.removed,
                              dueDate: local.dueDate)
     }
+    
+    func toggleCompleted() {
+        completed.toggle()
+    }
+    
 }
