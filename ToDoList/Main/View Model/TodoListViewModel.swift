@@ -15,6 +15,8 @@ class TodoListViewModel: ObservableObject {
     }
     
     @Published var todoList: [TodoItemModel] = []
+    @Published var showToast = false
+    var toastMessage: ImageToastData = .error(message: "", completion: {})
     private var localList: [LocalTodoItem] = []
     private var selectedModel: TodoItemModel?
 
@@ -29,7 +31,7 @@ class TodoListViewModel: ObservableObject {
                 }
             }
             catch {
-                
+                await handleError("Failed to load items from database.")
             }
         }
     }
@@ -41,24 +43,6 @@ class TodoListViewModel: ObservableObject {
             return newModel
         }
         return model
-    }
-    
-    func update() {
-        guard let model = selectedModel else { return }
-        Task {
-            do {
-                try await loader.update(LocalTodoItem(id: model.id,
-                                                      title: model.title,
-                                                      desc: model.desc,
-                                                      completed: model.completed,
-                                                      removed: model.removed,
-                                                      dueDate: model.dueDate))
-                loadList()
-            }
-            catch {
-                debugPrint("ERROR \(error)")
-            }
-        }
     }
     
     func createNewModel() {
@@ -102,8 +86,18 @@ class TodoListViewModel: ObservableObject {
             }
             catch {
                 debugPrint("ERROR \(error)")
+                await handleError("Failed to delete item.")
             }
         }
+    }
+    
+    @MainActor
+    private func handleError(_ message: String) {
+        toastMessage = .error(message: message, completion: { [weak self] in
+            self?.showToast = false
+        })
+        showToast = true
+        loadList()
     }
     
     func search(_ keyword: String) {
@@ -126,6 +120,7 @@ class TodoListViewModel: ObservableObject {
             }
             catch {
                 debugPrint("ERROR \(error)")
+                await handleError("Failed to add new item.")
             }
         }
     }
@@ -137,7 +132,7 @@ class TodoListViewModel: ObservableObject {
                 loadList()
             }
             catch {
-                debugPrint("ERROR \(error)")
+                await handleError("Failed to update item.")
             }
         }
     }

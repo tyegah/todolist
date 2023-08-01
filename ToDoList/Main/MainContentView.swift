@@ -15,21 +15,27 @@ struct MainContentView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                List {
-                    ForEach(viewModel.todoList, id:\.id){ item in
-                        TodoItemCell(model: item) { model in
-                            viewModel.didSelectItem(model)
-                            viewModel.save()
+            ZStack {
+                VStack {
+                    List {
+                        ForEach(viewModel.todoList, id:\.id){ item in
+                            TodoItemCell(model: item) { model in
+                                viewModel.didSelectItem(model)
+                                viewModel.save()
+                            }
+                            .onTapGesture {
+                                viewModel.didSelectItem(item)
+                                presentNewItemSheet = true
+                            }
                         }
-                        .onTapGesture {
-                            viewModel.didSelectItem(item)
-                            presentNewItemSheet = true
+                        .onDelete { item in
+                            viewModel.delete(viewModel.todoList[item.first ?? 0])
                         }
                     }
-                    .onDelete { item in
-                        viewModel.delete(viewModel.todoList[item.first ?? 0])
-                    }
+                }
+                
+                if viewModel.showToast {
+                    ImageToastView(toastData: viewModel.toastMessage)
                 }
             }
             .navigationTitle("ToDo List")
