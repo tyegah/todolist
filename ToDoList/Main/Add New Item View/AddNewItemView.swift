@@ -11,6 +11,7 @@ struct AddNewItemView: View {
     @State var title: String = ""
     @State var description: String = ""
     @State var dueDate: Date = .now
+    @State var isValid: Bool = false
     var model: TodoItemModel
     var onSave: (TodoItemModel) -> Void
     var onDismiss: () -> Void
@@ -30,7 +31,6 @@ struct AddNewItemView: View {
                     .bold()
                 Spacer()
                 Button(action: {
-                    // Code to create the post here
                     model.title = title
                     model.desc = description
                     model.dueDate = dueDate
@@ -40,6 +40,7 @@ struct AddNewItemView: View {
                     Text("Save")
                         .fontWeight(.bold)
                 }
+                .disabled(!isValid)
             }
             .padding()
             Form {
@@ -49,6 +50,9 @@ struct AddNewItemView: View {
                     DatePicker("Due date", selection: $dueDate, displayedComponents: .date)
                 }
             }
+            .onChange(of:title, perform: { newValue in
+                isValid = !title.isEmpty
+            })
             .onAppear {
                 title = model.title
                 description = model.desc ?? ""

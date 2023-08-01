@@ -20,7 +20,7 @@ struct PlaceholderTextEditor: View {
         ZStack(alignment: .topLeading) {
             if text.isEmpty {
                 Text(placeholder)
-                    .font(.system(size: 14))
+                    .font(.system(size: 16))
                     .foregroundColor(.gray.opacity(0.4))
                     .padding(.horizontal, 4)
                     .padding(.vertical, 8)
