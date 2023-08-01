@@ -7,8 +7,22 @@
 
 import UIKit
 import SwiftUI
+import CoreData
+
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    
+    private lazy var todoListStore: TodoListStore = {
+        do {
+            return try CoreDataTodoListStore(
+                storeURL: NSPersistentContainer
+                    .defaultDirectoryURL()
+                    .appendingPathComponent("todolist-store.sqlite"))
+        } catch {
+            assertionFailure("Failed to instantiate CoreData store with error: \(error.localizedDescription)")
+            return NullDataStore()
+        }
+    }()
 
     var window: UIWindow?
     var navigationController: UINavigationController = UINavigationController()
@@ -16,7 +30,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: scene)
-        navigationController.viewControllers = [UIHostingController(rootView: MainContentView())]
+        let viewModel = TodoListViewModel(loader: LocalTodoListLoader(store: todoListStore))
+        navigationController.viewControllers = [UIHostingController(rootView: MainContentView(viewModel: viewModel))]
         self.window?.rootViewController = navigationController
         self.window?.makeKeyAndVisible()
     }

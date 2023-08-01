@@ -8,10 +8,10 @@
 import Foundation
 
 struct LocalTodoItem {
-    var id: UUID
-    var title: String
-    var desc: String?
-    var completed: Bool
-    var removed: Bool
-    var dueDate: Date?
+    let id: UUID
+    let title: String
+    let desc: String?
+    let completed: Bool
+    let removed: Bool
+    let dueDate: Date?
 }
